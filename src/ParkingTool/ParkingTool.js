@@ -4,7 +4,7 @@ import { getCarsInfo } from "./utils";
 import "./ParkingTool.css";
 
 export default function ParkingTool(props) {
-  const { slots = 0, cars = 0 } = props;
+  const { slots = 0, cars = 0 } = props.parkingInputs;
   return (
     <div className="parking-lot">
       <div className="parking-lot__info">
