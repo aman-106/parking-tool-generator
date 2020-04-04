@@ -1,0 +1,55 @@
+.table-container {
+  min-width: 600px;
+  margin: auto;
+}
+
+.table-container table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #dddddd;
+
+  /* display: flex;
+  flex-grow: 1; */
+
+}
+
+.table-container td,
+th {
+  border-right: 1px solid #dddddd;
+  text-align: left;
+  padding: 0.8rem;
+  min-width: 100px;
+  text-transform: capitalize;
+  flex-basis: 10%;
+  font-size: 2rem;
+  text-align: center;
+  /* display: flex;
+  flex-grow: 1; */
+}
+
+.table-container 
+td {
+  font-size: 1.6rem;
+
+}
+
+.table-container 
+th{
+  border-bottom: 1px solid #bfbebe;
+
+}
+
+.table-container tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+
+.parking-lot .parking-lot__info {
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
+  align-items: flex-start;
+  padding: 2rem;
+
+}

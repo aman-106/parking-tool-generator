@@ -1,3 +1,10 @@
+:root {
+  --main-bg-color: coral;
+  --desktop: 992px;
+  --medium-device: 600px;
+  /* --small-device: 300px; */
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +14,58 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*  larger screens */
+html {
+  font-size: 11px;
+}
+
+@media screen and (max-width: var(--medium-device)) {
+  html {
+    font-size: 9px;
+  }
+}
+
+
+@media screen and (max-width: var(--desktop)) {
+  html {
+    font-size: 10px;
+  }
+}
+
+
+input, select {
+  width: 100%;
+  padding: 1.2rem 2rem;
+  margin: 0.8rem 0;
+  display: inline-block;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+  box-sizing: border-box;
+  outline: none;
+}
+
+input.error{
+  border: 0.1rem solid red;
+}
+
+input[type=submit], button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 1.4rem 2.0rem;
+  margin: 0.8rem 0;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: .15rem;
+}
+
+input[type=submit]:hover,button:hover {
+  background-color: #45a049;
+}
+
+label{
+  font-size: 1.5rem;
+    line-height: .15rem;
 }
