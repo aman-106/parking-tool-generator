@@ -27,14 +27,12 @@ th {
   flex-grow: 1; */
 }
 
-.table-container 
-td {
+.table-container td {
   font-size: 1.6rem;
 
 }
 
-.table-container 
-th{
+.table-container th {
   border-bottom: 1px solid #bfbebe;
 
 }
@@ -53,3 +51,16 @@ th{
   padding: 2rem;
 
 }
+
+.parking-lot .parking-lot__filters {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.parking-lot .parking-lot__filters>* {
+  flex-basis: 20%;
+  margin: 1rem;
+}
+
+/* .parking-lot .parking-lot__filters  .parking-lot__filters__act */

@@ -1,5 +1,6 @@
 import { format } from "date-fns";
-const colors = ["balck", "white", "grey"];
+export const colors = ["black", "white", "grey"];
+
 function getColor() {
   return colors[randomIntInRange(3)];
 }

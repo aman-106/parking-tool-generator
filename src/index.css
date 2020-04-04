@@ -59,6 +59,7 @@ input[type=submit], button {
   cursor: pointer;
   font-size: 1.5rem;
   line-height: .15rem;
+  text-transform: capitalize;
 }
 
 input[type=submit]:hover,button:hover {
