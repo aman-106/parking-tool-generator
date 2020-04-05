@@ -31,7 +31,7 @@ export default function ParkingSetup(props) {
   );
 
   return (
-    <div className="header">
+    <div className="parking-setup">
       <label htmlFor="slots">Parking Spots</label>
       <input
         type="number"

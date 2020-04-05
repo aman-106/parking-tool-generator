@@ -109,8 +109,12 @@ export default function ParkingTool(props) {
             );
           })}
         </select>
-        <button onClick={handleApplyFilters}> search</button>
-        <button onClick={resetFilters}>reset</button>
+        <button className={"btn--primary"} onClick={handleApplyFilters}>
+          search
+        </button>
+        <button className={"btn--secondary"} onClick={resetFilters}>
+          reset
+        </button>
       </div>
       <div className="parking-lot__table">
         <ParkingInfoTable

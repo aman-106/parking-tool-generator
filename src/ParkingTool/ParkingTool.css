@@ -82,6 +82,10 @@ th {
   margin: 1rem;
 }
 
+.parking-lot > div{
+  margin:  2rem 0 ;
+}
+
 
 
 /* .parking-lot .parking-lot__filters  .parking-lot__filters__act */
