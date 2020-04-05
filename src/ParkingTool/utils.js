@@ -24,11 +24,11 @@ const carsAndSlotsInfo = {
   // generated  list of cars with slots
   getCarsInfo(cars, slots) {
     const carsInfo = [];
-    this.slotsInfo = slotsStack(slots);
+    this.slotsInfo = slotsStack(Math.min(slots, 30));
     if (cars > slots) {
       return carsInfo;
     }
-    for (let index = 0; index < Math.max(cars, 30); index++) {
+    for (let index = 0; index < Math.min(cars, 30); index++) {
       // const element = array[index];
       carsInfo.push({
         count: index + 1,
