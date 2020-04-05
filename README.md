@@ -13,4 +13,7 @@ npm install
 npm start
 ```
 It will start localhost at 3000
+css extension are not applied for mozilla ,safari and others
 ## Usage
+
+ENTRY values for slots and cards in smaller range like 1 to 30, data generation is not efficient
