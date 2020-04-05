@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import PropTypes from "prop-types";
 import { parkingTool } from "../App/AppRouter";
+import "./ParkingSetup.css";
 
 // const defaultFn = function() {};
 export default function ParkingSetup(props) {
