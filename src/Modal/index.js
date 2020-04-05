@@ -7,7 +7,6 @@ const modalRoot = document.getElementById("modal-root");
 
 export default function Modal(props) {
   const el = document.createElement("div");
-  // el.className = "modal-content";
 
   useEffect(function() {
     const clsx = !props.show ? "modal off" : "modal";

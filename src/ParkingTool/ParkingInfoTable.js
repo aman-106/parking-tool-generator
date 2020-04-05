@@ -37,13 +37,13 @@ const getColumsInfo = handleRemove => [
 function NoData() {
   return (
     <div className="no-data">
-      <span className="no-data__title">No Cars</span>
+      <div className="no-data__title">No Cars</div>
     </div>
   );
 }
 
 export default function ParkingInfoTable(props) {
-  const { data = [], handleRemove, removedRows } = props;
+  const { data = [], handleRemove } = props;
   const noData = data.length;
   const columns = getColumsInfo(handleRemove);
   return (
@@ -57,23 +57,23 @@ export default function ParkingInfoTable(props) {
           </tr>
         </thead>
         <tbody>
-          {!noData
-            ? false
-            : data.map(function(row) {
-                return removedRows[row.id] ? (
-                  false
-                ) : (
-                  <tr key={row.id}>
-                    {columns.map(function(column) {
-                      return (
-                        <td key={column.acessor}>
-                          {column.cell ? column.cell(row) : row[column.acessor]}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
+          {!noData ? (
+            <NoData />
+          ) : (
+            data.map(function(row) {
+              return (
+                <tr key={row.id}>
+                  {columns.map(function(column) {
+                    return (
+                      <td key={column.acessor}>
+                        {column.cell ? column.cell(row) : row[column.acessor]}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>

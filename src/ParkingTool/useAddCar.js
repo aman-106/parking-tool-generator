@@ -24,7 +24,7 @@ export default function useAddCar() {
   const handleSetShow = useCallback(
     function(show) {
       setShow(show);
-      if (show == true) {
+      if (show === true) {
         setShouldAdd(emptyStr);
         setCarInfo(defaultCarInfo);
       }
@@ -32,13 +32,14 @@ export default function useAddCar() {
     [show]
   );
 
-  const handleSetShouldAddCar = useCallback(
-    function() {
+  const checkShouldAddCar = useCallback(
+    function(handleAddNewCar) {
       if (carInfo.regNum && carInfo.color) {
         let timeStamp = new Date();
         timeStamp = timeStamp.toISOString();
         setShouldAdd(timeStamp);
         setShow(false);
+        handleAddNewCar && handleAddNewCar(carInfo);
       }
     },
     [carInfo]
@@ -49,7 +50,7 @@ export default function useAddCar() {
     hanndleAddCar,
     show,
     handleSetShow,
-    shouldAdd,
-    handleSetShouldAddCar
+    // shouldAdd,
+    checkShouldAddCar
   ];
 }

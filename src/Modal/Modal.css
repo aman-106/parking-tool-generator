@@ -88,3 +88,10 @@
 
 }
 
+
+.modal-content .billing-info {
+  font-size: 3.6rem;
+  margin: 3rem;
+  text-align: center;
+}
+

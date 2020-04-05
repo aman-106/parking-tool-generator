@@ -1,10 +1,12 @@
 import React, { useMemo, useState } from "react";
 import ParkingInfoTable from "./ParkingInfoTable";
-import { getCarsInfo, colors, appendNewCar } from "./utils";
+import { colors } from "./utils";
 import useFilters from "./useFilters";
-import useDelCar from "./useDelCar";
-import Modal from "../Modal";
+import useCarsDataList from "./useCarsDataList";
 import useAddCar from "./useAddCar";
+import BilingSection from "./BilingSection";
+import AddCarSection from "./AddCarSection";
+import CollectingFees from "./CollectingFees";
 import "./ParkingTool.css";
 
 export default function ParkingTool(props) {
@@ -21,11 +23,20 @@ export default function ParkingTool(props) {
     handleCarInfo,
     showAddCar,
     setShowAddCar,
-    shouldAdd,
-    handleShouldAddCar
+    checkShouldAddCar
   ] = useAddCar();
-  const [removedCars, handleRemoveCar] = useDelCar();
+  const [
+    carsDataList,
+    removedCars,
+    handleRemoveCar,
+    handleAddNewCar
+  ] = useCarsDataList(cars);
 
+  function handleShouldAddCar() {
+    checkShouldAddCar(handleAddNewCar);
+  }
+  const [showBill, handleSetShowBilling] = useState(false);
+  const [selectedCarForFee, handleShowCollectingFees] = useState(false);
   const handleSetShowAddCar = function(show) {
     if (show) {
       if (parseInt(slots, 10) - parseInt(cars, 10) > 0) setShowAddCar(show);
@@ -34,13 +45,7 @@ export default function ParkingTool(props) {
     }
   };
 
-  let carsDataList = useMemo(
-    function() {
-      return getCarsInfo(cars);
-    },
-    [cars]
-  );
-  carsDataList = useMemo(
+  const filterdCarsDataList = useMemo(
     function() {
       if (!(filters.regNum || filters.color) || !appliedFilters) {
         // both are not empty
@@ -49,6 +54,7 @@ export default function ParkingTool(props) {
       const regex = new RegExp(".*" + filters.regNum + ".*", "i");
 
       return carsDataList.filter(function(rowdata) {
+        // filter by options for user
         if (filters.color && !filters.regNum) {
           return rowdata.color === filters.color;
         } else if (filters.regNum && !filters.color) {
@@ -58,21 +64,22 @@ export default function ParkingTool(props) {
         }
       });
     },
-    [appliedFilters]
+    [appliedFilters, carsDataList]
   );
 
-  carsDataList = useMemo(
-    function() {
-      if (shouldAdd) {
-        return appendNewCar(carsDataList, carInfo);
-      }
-      return carsDataList;
-    },
-    [shouldAdd]
-  );
-
-  function generateBill() {}
-
+  const billingSectionProps = { showBill, handleSetShowBilling, removedCars };
+  const addCarSectionProps = {
+    carInfo,
+    showAddCar,
+    handleSetShowAddCar,
+    handleCarInfo,
+    handleShouldAddCar
+  };
+  const collectingFeesProps = {
+    carInfo: selectedCarForFee,
+    handleRemoveCar,
+    handleShowCollectingFees
+  };
   return (
     <div className="parking-lot">
       <div className="parking-lot__state">
@@ -81,7 +88,7 @@ export default function ParkingTool(props) {
           <span>{`available parking slots:  ${slots - cars}`}</span>
         </div>
         <div className="parking-lot__state__actions">
-          <button onClick={generateBill}>Billing</button>
+          <button onClick={() => handleSetShowBilling(true)}>Billing</button>
           <button onClick={() => handleSetShowAddCar(true)}>Park A car</button>
         </div>
       </div>
@@ -95,7 +102,11 @@ export default function ParkingTool(props) {
         <select value={filters.color} onChange={handleFilters("color")}>
           <option value="">{"Select Color"}</option>
           {colors.map(function(color) {
-            return <option value={color}>{color}</option>;
+            return (
+              <option key={color} value={color}>
+                {color}
+              </option>
+            );
           })}
         </select>
         <button onClick={handleApplyFilters}> search</button>
@@ -103,41 +114,14 @@ export default function ParkingTool(props) {
       </div>
       <div className="parking-lot__table">
         <ParkingInfoTable
-          data={carsDataList}
-          handleRemove={handleRemoveCar}
+          data={filterdCarsDataList}
+          handleRemove={handleShowCollectingFees}
           removedRows={removedCars}
         />
       </div>
-      <Modal show={showAddCar}>
-        <div className="modal-header">
-          <h2>add car</h2>
-          <span
-            className="header__close"
-            onClick={() => handleSetShowAddCar(false)}
-          >
-            X
-          </span>
-        </div>
-        <div className="modal-car-info">
-          <input
-            className={carInfo.regNum ? "" : "error"}
-            placeholder="Type Reg No"
-            value={carInfo.regNum}
-            onChange={handleCarInfo("regNum")}
-          />
-          <select
-            className={carInfo.color ? "" : "error"}
-            value={carInfo.color}
-            onChange={handleCarInfo("color")}
-          >
-            <option value="">{"Select Color"}</option>
-            {colors.map(function(color) {
-              return <option value={color}>{color}</option>;
-            })}
-          </select>
-        </div>
-        <button onClick={handleShouldAddCar}>add</button>
-      </Modal>
+      <AddCarSection {...addCarSectionProps} />
+      <BilingSection {...billingSectionProps} />
+      <CollectingFees {...collectingFeesProps} />
     </div>
   );
 }
