@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+
 export const colors = ["black", "white", "grey"];
 
 function getColor() {
@@ -16,6 +17,7 @@ function slotsStack(slots) {
   }
   return array.sort(() => Math.random() - 0.5);
 }
+
 // object for storing slots and cars when a new parking info is provided
 const carsAndSlotsInfo = {
   slotsInfo: [],

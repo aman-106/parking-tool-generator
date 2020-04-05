@@ -82,8 +82,21 @@ th {
   margin: 1rem;
 }
 
-.parking-lot > div{
+.parking-lot  > div{
   margin:  2rem 0 ;
+}
+
+
+.parking-lot > .parking-lot--slots-full {
+  display:block;
+  transition: height 1.25s ease-in-out;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: red;
+  background-color: #f2bfbf;
+}
+.parking-lot > .parking-lot--slots-avail{
+  display: none;
 }
 
 

@@ -2,7 +2,6 @@ import React, { useMemo, useState } from "react";
 import ParkingInfoTable from "./ParkingInfoTable";
 import { colors } from "./utils";
 import useFilters from "./useFilters";
-import useCarsDataList from "./useCarsDataList";
 import useAddCar from "./useAddCar";
 import BilingSection from "./BilingSection";
 import AddCarSection from "./AddCarSection";
@@ -10,6 +9,7 @@ import CollectingFees from "./CollectingFees";
 import "./ParkingTool.css";
 // handles parking slots infomation , filters
 export default function ParkingTool(props) {
+  const { carsListProps } = props;
   const { slots = 0, cars = 0 } = props.parkingInputs;
   const [
     filters,
@@ -30,7 +30,7 @@ export default function ParkingTool(props) {
     removedCars,
     handleRemoveCar,
     handleAddNewCar
-  ] = useCarsDataList(cars, slots);
+  ] = carsListProps;
 
   function handleShouldAddCar() {
     checkShouldAddCar(handleAddNewCar);
@@ -80,8 +80,17 @@ export default function ParkingTool(props) {
     handleRemoveCar,
     handleShowCollectingFees
   };
+
+  const slotsfull = parseInt(slots, 10) - parseInt(cars, 10) <= 0;
   return (
     <div className="parking-lot">
+      <div
+        className={
+          slotsfull ? "parking-lot--slots-full" : "parking-lot--slots-avail"
+        }
+      >
+        Parking Slots are Full
+      </div>
       <div className="parking-lot__state">
         <div className="parking-lot__state__info">
           <span>{`total parking slots: ${slots}`}</span>

@@ -3,7 +3,7 @@ import { carsAndSlotsInfo } from "./utils";
 
 const noneDel = {};
 
-export default function useCarsDataList(cars, slots) {
+export default function useCarsDataList(cars, slots, handleChange) {
   const carsData = useMemo(
     function() {
       return carsAndSlotsInfo.getCarsInfo(cars, slots);
@@ -22,6 +22,7 @@ export default function useCarsDataList(cars, slots) {
       });
       // remove car
       setCarsDataList(filteresList);
+      handleChange("cars")(null, filteresList.length);
     },
     [carsDataList, removedCars]
   );
@@ -30,6 +31,7 @@ export default function useCarsDataList(cars, slots) {
     function(carInfo) {
       const newList = carsAndSlotsInfo.appendNewCar(carsDataList, carInfo);
       setCarsDataList(newList);
+      handleChange("cars")(null, newList.length);
     },
     [carsDataList]
   );

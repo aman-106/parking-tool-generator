@@ -3,7 +3,10 @@ import React from "react";
 const getColumsInfo = handleRemove => [
   {
     acessor: "count",
-    title: "count"
+    title: "count",
+    cell: function(row, index) {
+      return <span>{index + 1}</span>;
+    }
   },
   {
     title: "car no",
@@ -60,13 +63,15 @@ export default function ParkingInfoTable(props) {
           {!noData ? (
             <NoData />
           ) : (
-            data.map(function(row) {
+            data.map(function(row, index) {
               return (
                 <tr key={row.id}>
                   {columns.map(function(column) {
                     return (
                       <td key={column.acessor}>
-                        {column.cell ? column.cell(row) : row[column.acessor]}
+                        {column.cell
+                          ? column.cell(row, index)
+                          : row[column.acessor]}
                       </td>
                     );
                   })}

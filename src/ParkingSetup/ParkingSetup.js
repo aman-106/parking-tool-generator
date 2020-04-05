@@ -5,17 +5,7 @@ import "./ParkingSetup.css";
 
 // const defaultFn = function() {};
 export default function ParkingSetup(props) {
-  const { history, parkingInputs, setParkingInputs } = props;
-
-  const handleChange = useCallback(
-    function(name) {
-      return function(event) {
-        const { value = 0 } = event.target;
-        setParkingInputs(Object.assign({}, parkingInputs, { [name]: value }));
-      };
-    },
-    [parkingInputs]
-  );
+  const { history, parkingInputs, handleChange } = props;
 
   const processParkingInfo = useCallback(
     function() {
