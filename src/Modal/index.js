@@ -19,10 +19,13 @@ export default function Modal(props) {
     };
   }, []);
 
-  useEffect(function() {
-    const clsx = !props.show ? "modal off" : "modal";
-    modalRoot.className = clsx;
-  });
+  useEffect(
+    function() {
+      const clsx = !props.show ? "modal off" : "modal";
+      modalRoot.className = clsx;
+    },
+    [el, props.show]
+  );
 
   return props.show
     ? ReactDOM.createPortal(

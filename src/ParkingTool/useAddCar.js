@@ -8,7 +8,7 @@ const defaultCarInfo = {
 
 export default function useAddCar() {
   const [show, setShow] = useState(false);
-  const [shouldAdd, setShouldAdd] = useState(emptyStr);
+  const [, setShouldAdd] = useState(emptyStr);
   const [carInfo, setCarInfo] = useState(defaultCarInfo);
 
   const hanndleAddCar = useCallback(
