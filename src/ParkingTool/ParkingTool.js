@@ -8,7 +8,7 @@ import BilingSection from "./BilingSection";
 import AddCarSection from "./AddCarSection";
 import CollectingFees from "./CollectingFees";
 import "./ParkingTool.css";
-
+// handles parking slots infomation , filters
 export default function ParkingTool(props) {
   const { slots = 0, cars = 0 } = props.parkingInputs;
   const [

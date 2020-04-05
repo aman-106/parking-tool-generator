@@ -16,9 +16,10 @@ function slotsStack(slots) {
   }
   return array.sort(() => Math.random() - 0.5);
 }
-
+// object for storing slots and cars when a new parking info is provided
 const carsAndSlotsInfo = {
   slotsInfo: [],
+  // generated  list of cars with slots
   getCarsInfo(cars, slots) {
     const carsInfo = [];
     this.slotsInfo = slotsStack(slots);
@@ -41,9 +42,11 @@ const carsAndSlotsInfo = {
 
     return carsInfo;
   },
+  //  store the empty slot for  use
   addEmptySlot(slot) {
     this.slotsInfo.push(slot);
   },
+  // add newcar info
   appendNewCar(carsInfo, newcarInfo) {
     return [
       ...carsInfo,
@@ -51,6 +54,7 @@ const carsAndSlotsInfo = {
         count: carsInfo.length + 1,
         car_no: newcarInfo.regNum,
         color: newcarInfo.color,
+        // get next availble slot
         slot_no: this.slotsInfo.pop(),
         date_time: format(new Date(), "PPpp"),
         id: "some-cars-num-" + carsInfo.length

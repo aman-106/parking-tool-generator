@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Header";
 import AppRouter from "./AppRouter";
 import "./App.css";
-
+// starter for project
 function App() {
   return (
     <div className="App">

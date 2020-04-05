@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../Modal";
 import { colors } from "./utils";
-
+// for adding for new  car
 export default function AddCarSection(props) {
   const {
     carInfo,

@@ -4,7 +4,7 @@ import "./Modal.css";
 import PropTypes from "prop-types";
 
 const modalRoot = document.getElementById("modal-root");
-
+// component for creating modal using portal
 export default function Modal(props) {
   const el = document.createElement("div");
 

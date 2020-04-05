@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../Modal";
 const charge = 20;
-
+// for total revenue for parking
 export default function BilingSection(props) {
   const { showBill, handleSetShowBilling, removedCars = {} } = props;
   let removedCarsCount = 0;

@@ -13,6 +13,7 @@ export default function AppRouter() {
   return (
     <Router basename={basePath}>
       <Switch>
+        {/*  provides the basic inputs fields for parking tool */}
         <Route
           exact
           path={pathParkingSetup}
@@ -24,6 +25,8 @@ export default function AppRouter() {
             />
           )}
         />
+        {/*  shows the table for parking slots and vehciles */}
+
         <Route
           exact
           path={parkingTool}

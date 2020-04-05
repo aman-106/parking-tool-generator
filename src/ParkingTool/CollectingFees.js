@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../Modal";
 const charge = 20;
-
+// notice for collecting parking fee
 export default function CollectingFees(props) {
   const { carInfo, handleRemoveCar, handleShowCollectingFees } = props;
   function handleCollect() {
