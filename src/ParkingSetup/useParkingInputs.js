@@ -1,8 +1,8 @@
 import { useState, useCallback } from "react";
 
 const inputsValue = {
-  cars: 0,
-  slots: 0
+  cars: 10,
+  slots: 15
 };
 
 export default function useParkingInputs() {

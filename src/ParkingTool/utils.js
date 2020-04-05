@@ -26,3 +26,17 @@ export function getCarsInfo(cars) {
 
   return carsInfo;
 }
+
+export function appendNewCar(carsInfo, newcarInfo) {
+  return [
+    ...carsInfo,
+    {
+      count: carsInfo.length + 1,
+      car_no: newcarInfo.regNum,
+      color: newcarInfo.color,
+      slot_no: carsInfo.length + 1,
+      date_time: format(new Date(), "PPpp"),
+      id: "some-cars-num-" + carsInfo.length
+    }
+  ];
+}

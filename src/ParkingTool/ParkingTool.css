@@ -42,14 +42,33 @@ th {
 }
 
 
-.parking-lot .parking-lot__info {
+.parking-lot__state>.parking-lot__state__info {
   font-size: 2rem;
   display: flex;
   flex-direction: column;
   text-transform: capitalize;
   align-items: flex-start;
-  padding: 2rem;
 
+}
+
+.parking-lot>.parking-lot__state {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem;
+}
+
+.parking-lot>.parking-lot__state>div {
+  flex-basis: 40%;
+}
+
+.parking-lot>.parking-lot__state>.parking-lot__state__actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.parking-lot>.parking-lot__state>.parking-lot__state__actions>button {
+  margin: 0 1rem
 }
 
 .parking-lot .parking-lot__filters {
@@ -62,5 +81,7 @@ th {
   flex-basis: 20%;
   margin: 1rem;
 }
+
+
 
 /* .parking-lot .parking-lot__filters  .parking-lot__filters__act */

@@ -26,7 +26,7 @@ const getColumsInfo = handleRemove => [
     acessor: "id",
     cell: function renderCell(row) {
       return (
-        <button className="btn--remove" onClick={handleRemove(row)}>
+        <button className="btn--remove" onClick={() => handleRemove(row)}>
           remove
         </button>
       );
@@ -43,32 +43,38 @@ function NoData() {
 }
 
 export default function ParkingInfoTable(props) {
-  const { data = [] } = props;
+  const { data = [], handleRemove, removedRows } = props;
   const noData = data.length;
-  const columns = getColumsInfo(function() {});
+  const columns = getColumsInfo(handleRemove);
   return (
     <div className="table-container">
       <table>
-        <tr>
-          {columns.map(function(column) {
-            return <th>{column.title}</th>;
-          })}
-        </tr>
-        {!noData
-          ? false
-          : data.map(function(row) {
-              return (
-                <tr>
-                  {columns.map(function(column) {
-                    return (
-                      <td>
-                        {column.cell ? column.cell(row) : row[column.acessor]}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
+        <thead>
+          <tr key={"header"}>
+            {columns.map(function(column) {
+              return <th key={column.title}>{column.title}</th>;
             })}
+          </tr>
+        </thead>
+        <tbody>
+          {!noData
+            ? false
+            : data.map(function(row) {
+                return removedRows[row.id] ? (
+                  false
+                ) : (
+                  <tr key={row.id}>
+                    {columns.map(function(column) {
+                      return (
+                        <td key={column.acessor}>
+                          {column.cell ? column.cell(row) : row[column.acessor]}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+        </tbody>
       </table>
     </div>
   );

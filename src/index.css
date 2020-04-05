@@ -44,7 +44,7 @@ input, select {
   outline: none;
 }
 
-input.error{
+input.error ,select.error{
   border: 0.1rem solid red;
 }
 
