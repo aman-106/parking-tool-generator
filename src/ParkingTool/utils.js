@@ -9,34 +9,92 @@ function randomIntInRange(n) {
   return Math.floor(Math.random() * n);
 }
 
-export function getCarsInfo(cars) {
-  const carsInfo = [];
-  for (let index = 0; index < cars; index++) {
-    // const element = array[index];
-    carsInfo.push({
-      count: index + 1,
-      car_no:
-        "ka by " + randomIntInRange(cars) + "38" + randomIntInRange(cars) + "3",
-      color: getColor(),
-      slot_no: index + 1,
-      date_time: format(new Date(), "PPpp"),
-      id: "some-cars-num-" + index
-    });
+function slotsStack(slots) {
+  var array = [];
+  for (var i = 1; i <= slots; i++) {
+    array.push(i);
   }
-
-  return carsInfo;
+  return array.sort(() => Math.random() - 0.5);
 }
 
-export function appendNewCar(carsInfo, newcarInfo) {
-  return [
-    ...carsInfo,
-    {
-      count: carsInfo.length + 1,
-      car_no: newcarInfo.regNum,
-      color: newcarInfo.color,
-      slot_no: carsInfo.length + 1,
-      date_time: format(new Date(), "PPpp"),
-      id: "some-cars-num-" + carsInfo.length
+const carsAndSlotsInfo = {
+  slotsInfo: [],
+  getCarsInfo(cars, slots) {
+    const carsInfo = [];
+    this.slotsInfo = slotsStack(slots);
+    for (let index = 0; index < cars; index++) {
+      // const element = array[index];
+      carsInfo.push({
+        count: index + 1,
+        car_no:
+          "ka by " +
+          randomIntInRange(cars) +
+          "38" +
+          randomIntInRange(cars) +
+          "3",
+        color: getColor(),
+        slot_no: this.slotsInfo.pop(),
+        date_time: format(new Date(), "PPpp"),
+        id: "some-cars-num-" + index
+      });
     }
-  ];
-}
+
+    return carsInfo;
+  },
+  addEmptySlot(slot) {
+    this.slotsInfo.push(slot);
+  },
+  appendNewCar(carsInfo, newcarInfo) {
+    return [
+      ...carsInfo,
+      {
+        count: carsInfo.length + 1,
+        car_no: newcarInfo.regNum,
+        color: newcarInfo.color,
+        slot_no: this.slotsInfo.pop(),
+        date_time: format(new Date(), "PPpp"),
+        id: "some-cars-num-" + carsInfo.length
+      }
+    ];
+  }
+};
+
+// let slotsInfo = [];
+
+// const getCarsInfo = (cars, slots) => {
+//   const carsInfo = [];
+//   this.slotsInfo = slotsStack(slots);
+//   for (let index = 0; index < cars; index++) {
+//     // const element = array[index];
+//     carsInfo.push({
+//       count: index + 1,
+//       car_no:
+//         "ka by " + randomIntInRange(cars) + "38" + randomIntInRange(cars) + "3",
+//       color: getColor(),
+//       slot_no: this.slotsInfo.pop(),
+//       date_time: format(new Date(), "PPpp"),
+//       id: "some-cars-num-" + index
+//     });
+//   }
+
+//   return carsInfo;
+// };
+
+// const addEmptySlot = slot => {
+//   this.slotsInfo.push(slot);
+// };
+// const appendNewCar = (carsInfo, newcarInfo) => {
+//   return [
+//     ...carsInfo,
+//     {
+//       count: carsInfo.length + 1,
+//       car_no: newcarInfo.regNum,
+//       color: newcarInfo.color,
+//       slot_no: this.slotsInfo.pop(),
+//       date_time: format(new Date(), "PPpp"),
+//       id: "some-cars-num-" + carsInfo.length
+//     }
+//   ];
+// };
+
+export { carsAndSlotsInfo };

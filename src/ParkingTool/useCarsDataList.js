@@ -1,14 +1,14 @@
 import { useState, useCallback, useMemo } from "react";
-import { getCarsInfo, appendNewCar } from "./utils";
+import { carsAndSlotsInfo } from "./utils";
 
 const noneDel = {};
 
-export default function useCarsDataList(cars) {
+export default function useCarsDataList(cars, slots) {
   const carsData = useMemo(
     function() {
-      return getCarsInfo(cars);
+      return carsAndSlotsInfo.getCarsInfo(cars, slots);
     },
-    [cars]
+    [cars, slots]
   );
   const [removedCars, setRemoveRow] = useState(noneDel);
   const [carsDataList, setCarsDataList] = useState(carsData);
@@ -16,6 +16,7 @@ export default function useCarsDataList(cars) {
   const handleRemoveCar = useCallback(
     function(row) {
       setRemoveRow(Object.assign({}, removedCars, { [row.id]: true }));
+      carsAndSlotsInfo.addEmptySlot(row.slot_no);
       const filteresList = carsDataList.filter(function(rowdata) {
         return rowdata.id !== row.id;
       });
@@ -27,7 +28,7 @@ export default function useCarsDataList(cars) {
 
   const handleAddNewCar = useCallback(
     function(carInfo) {
-      const newList = appendNewCar(carsDataList, carInfo);
+      const newList = carsAndSlotsInfo.appendNewCar(carsDataList, carInfo);
       setCarsDataList(newList);
     },
     [carsDataList]

@@ -30,7 +30,7 @@ export default function ParkingTool(props) {
     removedCars,
     handleRemoveCar,
     handleAddNewCar
-  ] = useCarsDataList(cars);
+  ] = useCarsDataList(cars, slots);
 
   function handleShouldAddCar() {
     checkShouldAddCar(handleAddNewCar);
