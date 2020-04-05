@@ -6,7 +6,10 @@ const noneDel = {};
 export default function useCarsDataList(cars, slots, handleChange) {
   const carsData = useMemo(
     function() {
-      return carsAndSlotsInfo.getCarsInfo(cars, slots);
+      if (parseInt(cars, 10) && parseInt(slots, 10)) {
+        return carsAndSlotsInfo.getCarsInfo(cars, slots);
+      }
+      return [];
     },
     [cars, slots]
   );

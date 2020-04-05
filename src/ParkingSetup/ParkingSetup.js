@@ -27,6 +27,7 @@ export default function ParkingSetup(props) {
       <input
         type="number"
         value={parkingInputs.slots}
+        max={30}
         onChange={handleChange("slots")}
       />
       <label htmlFor="cars">Number of Cars</label>
@@ -37,6 +38,7 @@ export default function ParkingSetup(props) {
             ? "error"
             : ""
         }
+        max={30}
         value={parkingInputs.cars}
         onChange={handleChange("cars")}
       />

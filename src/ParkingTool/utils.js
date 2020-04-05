@@ -25,7 +25,10 @@ const carsAndSlotsInfo = {
   getCarsInfo(cars, slots) {
     const carsInfo = [];
     this.slotsInfo = slotsStack(slots);
-    for (let index = 0; index < cars; index++) {
+    if (cars > slots) {
+      return carsInfo;
+    }
+    for (let index = 0; index < Math.max(cars, 30); index++) {
       // const element = array[index];
       carsInfo.push({
         count: index + 1,
