@@ -59,42 +59,4 @@ const carsAndSlotsInfo = {
   }
 };
 
-// let slotsInfo = [];
-
-// const getCarsInfo = (cars, slots) => {
-//   const carsInfo = [];
-//   this.slotsInfo = slotsStack(slots);
-//   for (let index = 0; index < cars; index++) {
-//     // const element = array[index];
-//     carsInfo.push({
-//       count: index + 1,
-//       car_no:
-//         "ka by " + randomIntInRange(cars) + "38" + randomIntInRange(cars) + "3",
-//       color: getColor(),
-//       slot_no: this.slotsInfo.pop(),
-//       date_time: format(new Date(), "PPpp"),
-//       id: "some-cars-num-" + index
-//     });
-//   }
-
-//   return carsInfo;
-// };
-
-// const addEmptySlot = slot => {
-//   this.slotsInfo.push(slot);
-// };
-// const appendNewCar = (carsInfo, newcarInfo) => {
-//   return [
-//     ...carsInfo,
-//     {
-//       count: carsInfo.length + 1,
-//       car_no: newcarInfo.regNum,
-//       color: newcarInfo.color,
-//       slot_no: this.slotsInfo.pop(),
-//       date_time: format(new Date(), "PPpp"),
-//       id: "some-cars-num-" + carsInfo.length
-//     }
-//   ];
-// };
-
 export { carsAndSlotsInfo };
